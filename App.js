@@ -27,7 +27,13 @@ export default function App({ navigation }) {
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+
+          screenOptions={{ 
+            contentStyle: { backgroundColor: '#161616' } ,
+            headerTintColor: 'rgba(255,255,255,1)', headerStyle: { backgroundColor: 'rgba(8,8,8,1)' }
+          }
+          }>
           <Stack.Screen
             name="Drawer"
             component={DrawerNavigation}
@@ -39,7 +45,10 @@ export default function App({ navigation }) {
           <Stack.Screen name="Contact" component={ContactScreen} />
           <Stack.Screen name="Cgu" component={CguScreen} />
           <Stack.Screen name="Profil" component={ProfilScreen} />
-          <Stack.Screen name="NewsContent" component={NewsContentScreen} />
+          <Stack.Screen
+            name="NewsContent"
+            component={NewsContentScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

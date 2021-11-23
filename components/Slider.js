@@ -1,85 +1,3 @@
-/*
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { SliderBox } from "react-native-image-slider-box";
-const { width } = Dimensions.get('window')
-export default class Slider extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            images: [
-                require('../assets/plasticduck/pc1.jpg'),
-                require('../assets/plasticduck/pc2.jpg'),
-                require('../assets/plasticduck/pc3.jpg')          // Local image
-            ]
-        };
-    }
-
-    render() {
-        return (
-            <>
-                <SliderBox
-                    images={this.state.images}
-                    sliderBoxHeight={width / 1.5}
-                    onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-                    paginationBoxVerticalPadding={20}
-                    resizeMethod={'resize'}
-                    resizeMode={'cover'}
-                    ImageComponentStyle={{}}
-                    imageLoadingColor="#2196F3"
-                    autoplay
-                    autoplayInterval={6000}
-                    circleLoop
-                    ImageComponentStyle={{ position: 'relative' }}
-
-                />
-                <View style={styles.headerComponents}>
-                    <Text style={styles.headerComponentsTitle}>#ACTUALITES</Text>
-                    <Text style={styles.headerComponentsContent}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-                    <View style={styles.headerShowButton}>
-                        <Text style={styles.headerShowButtonText}>VOIR PLUS</Text>
-                    </View>
-                </View>
-            </>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    headerComponents: {
-        position: 'absolute',
-        bottom: 72,
-        left: 32
-    },
-    headerComponentsTitle: {
-        fontFamily: 'Agency FB',
-        color: 'white',
-        fontSize: (width * 0.05),
-        textShadowOffset: { width: 2, height: 2 },
-        textShadowRadius: 4,
-        textShadowColor: 'black',
-    },
-    headerComponentsContent: {
-        fontFamily: 'Agency FB Bold',
-        color: 'white',
-        width: width - (32 * 2),
-        fontSize: (width * 0.04),
-        textShadowOffset: { width: 2, height: 2 },
-        textShadowRadius: 4,
-        textShadowColor: 'black',
-    },
-    headerShowButton: {
-        fontFamily: 'Agency FB',
-        color: 'white'
-    },
-    headerShowButtonText: {
-        fontFamily: 'Agency FB Bold',
-        color: 'white',
-        fontSize: (width * 0.05),
-    }
-});
-*/
-
 import React, { Component } from 'react'
 import { AppRegistry, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 const { width } = Dimensions.get('window')
@@ -180,12 +98,12 @@ export default function Slider({ navigation }) {
       paginationStyle={{ bottom: 0 }}
       prevButton
       nextButton
-      activeDotColor={'rgba(70,70,70,0.7)'}
-      dotColor={'rgba(40,40,40,0.5)'}
+      activeDotColor={'#FFFFFF'}
+      dotColor={'#A5A5A5'}
       index={0}
       loop
     >
-      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', {name: 'Actualité'})}>
+      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', { name: 'Actualité' })}>
         <Image style={{ maxHeight: width / 1.5, width: width, zIndex: 0 }} resizeMode={'cover'} source={require("../assets/plasticduck/pc1.jpg")} />
         <View style={styles.headerComponents}>
           <Text style={styles.headerComponentsTitle}>#ACTUALITES</Text>
@@ -199,7 +117,7 @@ export default function Slider({ navigation }) {
         </View>
       </View>
 
-      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', {name: 'Autre'})}>
+      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', { name: 'Autre' })}>
         <Image style={{ maxHeight: width / 1.5, width: width, zIndex: 0 }} resizeMode={'cover'} source={require("../assets/plasticduck/pc2.jpg")} />
         <View style={styles.headerComponents}>
           <Text style={styles.headerComponentsTitle}>#AUTRE</Text>
@@ -213,7 +131,7 @@ export default function Slider({ navigation }) {
         </View>
       </View>
 
-      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', {name: 'Nouveau'})}>
+      <View style={styles.header} onTouchEnd={() => navigation.navigate('NewsContent', { name: 'Nouveau' })}>
         <Image style={{ maxHeight: width / 1.5, width: width, zIndex: 0 }} resizeMode={'cover'} source={require("../assets/plasticduck/pc3.jpg")} />
         <View style={styles.headerComponents}>
           <Text style={styles.headerComponentsTitle}>#NOUVEAU</Text>
