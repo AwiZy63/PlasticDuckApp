@@ -19,7 +19,9 @@ import PhotoScreen from './pages/PhotoScreen';
 import VideoScreen from './pages/VideoScreen';
 import MusicScreen from './pages/MusicScreen';
 import MusicSelectorScreen from './pages/MusicSelectorScreen';
-
+import { StatusBar } from 'expo-status-bar';
+import LoginScreen from './pages/LoginScreen';
+import RegisterScreen from './pages/RegisterScreen';
 const { width } = Dimensions.get('window');
 
 const Stack = createNativeStackNavigator();
@@ -30,7 +32,7 @@ export default function App({ navigation }) {
     'Agency FB': require('./assets/fonts/AgencyFB.ttf'),
     'Agency FB Bold': require('./assets/fonts/AgencyFBBold.ttf'),
   });
-  
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -144,7 +146,24 @@ export default function App({ navigation }) {
               title: 'VIDEOS',
             }}
           />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{
+              headerTitleStyle: styles.headerTitle,
+              title: 'SE CONNECTER',
+            }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={{
+              headerTitleStyle: styles.headerTitle,
+              title: 'S\'INSCRIRE',
+            }}
+          />
         </Stack.Navigator>
+        <StatusBar style="light" />
       </NavigationContainer>
     );
   }

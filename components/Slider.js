@@ -139,7 +139,7 @@ export default function Slider({ navigation }) {
     <Swiper
       style={styles.wrapper}
       showsButtons={true}
-
+      autoplay
       autoplayTimeout={5}
       height={width / 1.5}
       paginationStyle={{ bottom: 0 }}

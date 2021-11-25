@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -9,27 +9,43 @@ import HomeScreen from '../pages/HomeScreen';
 import { Dimensions, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Image } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBalanceScaleRight, faCalendarDay, faCaretRight, faMusic, faPencilAlt, faQuestionCircle, faUserAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faBalanceScaleRight, faCalendarDay, faCaretRight, faMusic, faPencilAlt, faQuestionCircle, faUserAlt, faUserCircle, faUserLock } from '@fortawesome/free-solid-svg-icons';
 
 const { width } = Dimensions.get('window')
 
 function CustomDrawerContent(props) {
+  const [isLogged, setIsLogged] = useState(false)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <DrawerContentScrollView style={styles.sidebarContainer} {...props}>
         <DrawerItemList {...props} />
-        <View style={styles.sidebarHeader} onTouchEnd={() => props.navigation.navigate('Profil')}>
-          <View style={styles.sidebarHeaderShape}></View>
-          <FontAwesomeIcon icon={faUserAlt} size={50} style={{ position: 'absolute', left: 42 }} color={'white'} />
-          <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.sidebarHeaderProfilIcon} color={'gray'} />
-          <View style={styles.sidebarItemProfilTextWrapper}>
-            <Text style={styles.sidebarHeaderProfilText}>EDITER MON</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.sidebarItemProfilLabel}>PROFIL</Text>
-              <FontAwesomeIcon icon={faPencilAlt} size={16} style={{ marginLeft: 10 }} color={'white'} />
+        {isLogged ?
+          <View style={styles.sidebarHeader} onTouchEnd={() => props.navigation.navigate('Profil')}>
+            <View style={styles.sidebarHeaderShape}></View>
+            <FontAwesomeIcon icon={faUserAlt} size={50} style={{ position: 'absolute', left: 42 }} color={'white'} />
+            <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.sidebarHeaderProfilIcon} color={'gray'} />
+            <View style={styles.sidebarItemProfilTextWrapper}>
+              <Text style={styles.sidebarHeaderProfilText}>EDITER MON</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.sidebarItemProfilLabel}>PROFIL</Text>
+                <FontAwesomeIcon icon={faPencilAlt} size={16} style={{ marginLeft: 10 }} color={'white'} />
+              </View>
             </View>
           </View>
-        </View>
+          :
+          <View style={styles.sidebarHeader} onTouchEnd={() => props.navigation.navigate('Login')}>
+            <View style={styles.sidebarHeaderShape}></View>
+            <FontAwesomeIcon icon={faUserAlt} size={50} style={{ position: 'absolute', left: 42 }} color={'white'} />
+            <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.sidebarHeaderProfilIcon} color={'gray'} />
+            <View style={styles.sidebarItemProfilTextWrapper}>
+              <Text style={styles.sidebarHeaderProfilText}>SE CONNECTER A</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.sidebarItemProfilLabel}>MON COMPTE</Text>
+                <FontAwesomeIcon icon={faUserLock} size={16} style={{ marginLeft: 10 }} color={'white'} />
+              </View>
+            </View>
+          </View>
+        }
         <View style={styles.sidebarItem} onTouchEnd={() => props.navigation.navigate('Music')} >
           <FontAwesomeIcon icon={faMusic} size={width * 0.04} style={styles.sidebarItemIcon} />
           <DrawerItem

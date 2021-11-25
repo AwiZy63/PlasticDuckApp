@@ -1,4 +1,4 @@
-import { faCalendarDay, faGamepad, faNewspaper, faPhotoVideo, faUserCircle, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faGamepad, faNewspaper, faPhotoVideo, faUserCircle, faUserLock, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useState } from 'react'
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
@@ -8,6 +8,8 @@ const { width, height } = Dimensions.get('screen')
 
 export default function HomeGrid({ navigation }) {
     const [isAdmin, setIsAdmin] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
+
     const horizontalSpacer = (
         <Col style={{ alignItems: 'center', justifyContent: 'center' }}>
             <View style={{ width: width * 0.3, height: 1, backgroundColor: 'rgba(188,142,11,0.3)' }}></View>
@@ -65,16 +67,25 @@ export default function HomeGrid({ navigation }) {
                     {/* SPACER */}
                 </Row>
                 <Row style={{ justifyContent: 'space-around' }}>
-                    <Col style={styles.colBox}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <FontAwesomeIcon icon={faUserCircle} size={width * 0.1} color={'white'} />
-                            <View style={{ marginLeft: width * 0.01 }}>
-                                <Text style={styles.boxText}>NIV. 1</Text>
-                                <Text style={styles.profilText}>0 POINTS</Text>
+                    {isLogged ?
+                        <Col onPress={() => { navigation.navigate('Profil') }}
+                            style={styles.colBox}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <FontAwesomeIcon icon={faUserCircle} size={width * 0.1} color={'white'} />
+                                <View style={{ marginLeft: width * 0.01 }}>
+                                    <Text style={styles.boxText}>NIV. 1</Text>
+                                    <Text style={styles.profilText}>0 POINTS</Text>
+                                </View>
                             </View>
-                        </View>
-                        <Text style={styles.boxText}>MON PROFIL</Text>
-                    </Col>
+                            <Text style={styles.boxText}>MON PROFIL</Text>
+                        </Col>
+                        :
+                        <Col onPress={() => { navigation.navigate('Login') }}
+                            style={styles.colBox}>
+                            <FontAwesomeIcon icon={faUserLock} size={width * 0.1} color={'white'} />
+                            <Text style={styles.boxText}>CONNEXION</Text>
+                        </Col>
+                    }
                     {/* SPACER */}
                     {verticalSpacer}
                     {/* SPACER */}
