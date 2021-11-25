@@ -30,7 +30,7 @@ function CustomDrawerContent(props) {
             </View>
           </View>
         </View>
-        <View style={styles.sidebarItem} onTouchEnd={() => props.navigation.navigate('MusicSelector')} >
+        <View style={styles.sidebarItem} onTouchEnd={() => props.navigation.navigate('Music')} >
           <FontAwesomeIcon icon={faMusic} size={width * 0.04} style={styles.sidebarItemIcon} />
           <DrawerItem
             pressColor={'#161616'}

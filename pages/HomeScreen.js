@@ -5,6 +5,7 @@ import Slider from '../components/Slider'
 import { Dimensions } from 'react-native'
 import SocialMedia from '../components/SocialMedia'
 import HomeGrid from '../components/HomeGrid'
+import Footer from '../components/Footer'
 
 const { width } = Dimensions.get('window')
 export default function HomeScreen({ navigation }) {
@@ -16,11 +17,9 @@ export default function HomeScreen({ navigation }) {
                 <SocialMedia />
             </View>
             <View style={{ flex: 1 }}>
-                <HomeGrid />
+                <HomeGrid navigation={navigation} />
             </View>
-            <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000', height: width*0.06}}>
-                <Text style={{color: 'rgba(255,255,255,0.5)', fontFamily: 'Agency FB Bold', fontSize: width * 0.03}}>PLASTIC DUCK - 2021</Text>
-            </View>
+            <Footer/>
         </SafeAreaView>
     )
 }

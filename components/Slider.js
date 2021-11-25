@@ -84,6 +84,53 @@ const styles = StyleSheet.create({
     borderRightColor: 'transparent',
     borderTopColor: '#BC8E0B'
   },
+  topBanner: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{ translateY: -((width * 0.05) / 2) }],
+    left: width * 0.03,
+    top: width * 0.05
+  },
+  topBannerText: {
+    fontFamily: 'Agency FB',
+    paddingHorizontal: 10,
+    backgroundColor: '#BC8E0B',
+    color: '#FFFFFF',
+    fontSize: width * 0.05,
+  },
+  rightTriangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderRightWidth: width * 0.035,
+    borderTopWidth: width * 0.061,
+    borderRightColor: 'transparent',
+    borderTopColor: '#BC8E0B',
+    position: 'absolute',
+    transform: [
+      { translateX: (width * 0.034) }
+    ],
+    position: 'absolute',
+    right: 0
+  },
+  leftTriangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderRightWidth: width * 0.035,
+    borderTopWidth: width * 0.061,
+    borderRightColor: 'transparent',
+    borderTopColor: '#BC8E0B',
+    transform: [
+      { rotate: '180deg' },
+      { translateX: (width * 0.034) }
+    ],
+    position: 'absolute',
+    left: 0
+  },
 
 })
 
@@ -92,7 +139,7 @@ export default function Slider({ navigation }) {
     <Swiper
       style={styles.wrapper}
       showsButtons={true}
-      autoplay
+
       autoplayTimeout={5}
       height={width / 1.5}
       paginationStyle={{ bottom: 0 }}
@@ -109,9 +156,10 @@ export default function Slider({ navigation }) {
           <Text style={styles.headerComponentsTitle}>#ACTUALITES</Text>
           <Text style={styles.headerComponentsContent}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
           <View style={styles.headerShowButton}>
-            <View style={{ position: 'absolute', top: width * 0.33 }}>
-              <View style={[styles.triangleCorner]} />
-              <Text style={styles.headerShowButtonText}>VOIR PLUS</Text>
+            <View style={styles.topBanner}>
+              <Text style={styles.topBannerText}>VOIR PLUS</Text>
+              <View style={styles.rightTriangle}></View>
+              <View style={styles.leftTriangle}></View>
             </View>
           </View>
         </View>
@@ -123,9 +171,10 @@ export default function Slider({ navigation }) {
           <Text style={styles.headerComponentsTitle}>#AUTRE</Text>
           <Text style={styles.headerComponentsContent}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
           <View style={styles.headerShowButton}>
-            <View style={{ position: 'absolute', top: width * 0.33 }}>
-              <View style={[styles.triangleCorner]} />
-              <Text style={styles.headerShowButtonText}>VOIR PLUS</Text>
+            <View style={styles.topBanner}>
+              <Text style={styles.topBannerText}>VOIR PLUS</Text>
+              <View style={styles.rightTriangle}></View>
+              <View style={styles.leftTriangle}></View>
             </View>
           </View>
         </View>
@@ -137,9 +186,10 @@ export default function Slider({ navigation }) {
           <Text style={styles.headerComponentsTitle}>#NOUVEAU</Text>
           <Text style={styles.headerComponentsContent}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
           <View style={styles.headerShowButton}>
-            <View style={{ position: 'absolute', top: width * 0.33 }}>
-              <View style={[styles.triangleCorner]} />
-              <Text style={styles.headerShowButtonText}>VOIR PLUS</Text>
+            <View style={styles.topBanner}>
+              <Text style={styles.topBannerText}>VOIR PLUS</Text>
+              <View style={styles.rightTriangle}></View>
+              <View style={styles.leftTriangle}></View>
             </View>
           </View>
         </View>
