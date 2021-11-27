@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
@@ -27,6 +27,7 @@ const { width } = Dimensions.get('window');
 const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
+  const [isLogged, setIsLogged] = useState(true)
 
   let [fontsLoaded] = useFonts({
     'Agency FB': require('./assets/fonts/AgencyFB.ttf'),
@@ -47,6 +48,7 @@ export default function App({ navigation }) {
           }>
           <Stack.Screen
             name="Drawer"
+            initialParams={{isLogged: isLogged}}
             component={DrawerNavigation}
             options={{ headerShown: false }}
           />

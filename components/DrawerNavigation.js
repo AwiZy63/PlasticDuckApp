@@ -10,16 +10,17 @@ import { Dimensions, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Image } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBalanceScaleRight, faCalendarDay, faCaretRight, faMusic, faPencilAlt, faQuestionCircle, faUserAlt, faUserCircle, faUserLock } from '@fortawesome/free-solid-svg-icons';
+import { useRoute } from '@react-navigation/core';
 
 const { width } = Dimensions.get('window')
 
 function CustomDrawerContent(props) {
-  const [isLogged, setIsLogged] = useState(false)
+  const route = useRoute();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <DrawerContentScrollView style={styles.sidebarContainer} {...props}>
         <DrawerItemList {...props} />
-        {isLogged ?
+        {route.params.isLogged ?
           <View style={styles.sidebarHeader} onTouchEnd={() => props.navigation.navigate('Profil')}>
             <View style={styles.sidebarHeaderShape}></View>
             <FontAwesomeIcon icon={faUserAlt} size={50} style={{ position: 'absolute', left: 42 }} color={'white'} />
@@ -122,13 +123,15 @@ function CustomDrawerContent(props) {
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigation({ }) {
+export default function DrawerNavigation({ navigation }) {
+  const route = useRoute();
   return (
     <Drawer.Navigator
       screenOptions={{ headerTransparent: true, headerTintColor: 'white' }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={HomeScreen}
+      initialParams={{isLogged: route.params.isLogged}}
         options={{
           drawerLabel: () => null,
           title: null,

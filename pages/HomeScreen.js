@@ -6,10 +6,12 @@ import { Dimensions } from 'react-native'
 import SocialMedia from '../components/SocialMedia'
 import HomeGrid from '../components/HomeGrid'
 import Footer from '../components/Footer'
+import { useRoute } from '@react-navigation/core'
 
 const { width } = Dimensions.get('window')
 export default function HomeScreen({ navigation }) {
-
+    const route = useRoute();
+    const isLogged = route.params.isLogged
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#161616' }}>
             <View style={{ flex: 1, maxHeight: width / 1.5, position: 'relative' }}>
@@ -17,7 +19,7 @@ export default function HomeScreen({ navigation }) {
                 <SocialMedia />
             </View>
             <View style={{ flex: 1 }}>
-                <HomeGrid navigation={navigation} />
+                <HomeGrid isLogged={isLogged} navigation={navigation} />
             </View>
             <Footer/>
         </SafeAreaView>

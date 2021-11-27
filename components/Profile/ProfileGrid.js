@@ -1,4 +1,4 @@
-import { faCalendarDay, faGamepad, faNewspaper, faPhotoVideo, faUserCircle, faUserLock, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faBalanceScaleLeft, faCalendarDay, faGamepad, faLock, faNewspaper, faPencilAlt, faPhotoVideo, faPowerOff, faQuestionCircle, faUserCircle, faUserLock, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useState } from 'react'
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
@@ -6,8 +6,13 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 
 const { width, height } = Dimensions.get('screen')
 
-export default function HomeGrid({ navigation, isLogged }) {
+export default function ProfileGrid({ navigation, isLogged }) {
     const [isAdmin, setIsAdmin] = useState(false)
+    const [appVersion, setAppVersion] = useState("1.0")
+    const [appVersionDate, setAppVersionDate] = useState(new Date())
+
+
+    const formattedAppVersionDate = `${appVersionDate.getDate()}-${appVersionDate.getMonth() + 1}-${appVersionDate.getFullYear()} ${appVersionDate.getHours()}:${appVersionDate.getMinutes()}`
 
     const horizontalSpacer = (
         <Col style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -25,18 +30,18 @@ export default function HomeGrid({ navigation, isLogged }) {
         <>
             <Grid style={{ paddingHorizontal: width * 0.05 }}>
                 <Row style={{ justifyContent: 'space-between' }}>
-                    <Col onPress={() => { navigation.navigate('News') }}
+                    <Col onPress={() => { navigation.navigate('Profil') }}
                         style={styles.colBox}>
-                        <FontAwesomeIcon icon={faNewspaper} size={width * 0.1} color={'white'} />
-                        <Text style={styles.boxText}>ACTUALITÉ</Text>
+                        <FontAwesomeIcon icon={faPencilAlt} size={width * 0.1} color={'white'} />
+                        <Text style={styles.boxText}>ÉDITER MON COMPTE</Text>
                     </Col>
                     {/* SPACER */}
                     {verticalSpacer}
                     {/* SPACER */}
-                    <Col onPress={() => { navigation.navigate('Events') }}
+                    <Col onPress={() => { navigation.navigate('Profil') }}
                         style={styles.colBox}>
-                        <FontAwesomeIcon icon={faCalendarDay} size={width * 0.1} color={'white'} />
-                        <Text style={styles.boxText}>ÉVENEMENTS</Text>
+                        <FontAwesomeIcon icon={faLock} size={width * 0.1} color={'white'} />
+                        <Text style={styles.boxText}>MODIFIER MON MOT DE PASSE</Text>
                     </Col>
                 </Row>
                 <Row style={{ height: 1, justifyContent: 'space-between' }}>
@@ -46,17 +51,18 @@ export default function HomeGrid({ navigation, isLogged }) {
                     {/* SPACER */}
                 </Row>
                 <Row style={{ justifyContent: 'space-around' }}>
-                    <Col onPress={() => { navigation.navigate('Media') }}
+                    <Col onPress={() => { navigation.navigate('Contact') }}
                         style={styles.colBox}>
-                        <FontAwesomeIcon icon={faPhotoVideo} size={width * 0.1} color={'white'} />
-                        <Text style={styles.boxText}>PHOTOS / VIDEOS</Text>
+                        <FontAwesomeIcon icon={faQuestionCircle} size={width * 0.1} color={'white'} />
+                        <Text style={styles.boxText}>NOUS CONTACTER</Text>
                     </Col>
                     {/* SPACER */}
                     {verticalSpacer}
                     {/* SPACER */}
-                    <Col style={styles.colBox}>
-                        <FontAwesomeIcon icon={faGamepad} size={width * 0.1} color={'white'} />
-                        <Text style={styles.boxText}>JEUX</Text>
+                    <Col onPress={() => { navigation.navigate('Profil') }}
+                        style={styles.colBox}>
+                        <FontAwesomeIcon icon={faPowerOff} size={width * 0.1} color={'white'} />
+                        <Text style={styles.boxText}>SE DÉCONNECTER</Text>
                     </Col>
                 </Row>
                 <Row style={{ height: 1, justifyContent: 'space-between' }}>
@@ -66,37 +72,22 @@ export default function HomeGrid({ navigation, isLogged }) {
                     {/* SPACER */}
                 </Row>
                 <Row style={{ justifyContent: 'space-around' }}>
-                    {isLogged ?
-                        <Col onPress={() => { navigation.navigate('Profil') }}
-                            style={styles.colBox}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <FontAwesomeIcon icon={faUserCircle} size={width * 0.1} color={'white'} />
-                                <View style={{ marginLeft: width * 0.01 }}>
-                                    <Text style={styles.boxText}>NIV. 1</Text>
-                                    <Text style={styles.profilText}>0 POINTS</Text>
-                                </View>
-                            </View>
-                            <Text style={styles.boxText}>MON PROFIL</Text>
-                        </Col>
-                        :
-                        <Col onPress={() => { navigation.navigate('Login') }}
-                            style={styles.colBox}>
-                            <FontAwesomeIcon icon={faUserLock} size={width * 0.1} color={'white'} />
-                            <Text style={styles.boxText}>CONNEXION</Text>
-                        </Col>
-                    }
+                    <Col onPress={() => { navigation.navigate('Cgu') }}
+                        style={styles.colBox}>
+                        <FontAwesomeIcon icon={faBalanceScaleLeft} size={width * 0.1} color={'white'} />
+                        <Text style={styles.boxText}>C.G.U</Text>
+                    </Col>
                     {/* SPACER */}
                     {verticalSpacer}
                     {/* SPACER */}
-                    {isAdmin ?
-                        <Col style={styles.colBox}>
-                            <FontAwesomeIcon icon={faWrench} size={width * 0.1} color={'white'} />
-                            <Text style={styles.boxText}>ACCÈS GESTION</Text>
-                        </Col>
-                        :
-                        <Col style={styles.emptyColBox}>
-                        </Col>
-                    }
+                    <Col onPress={() => { navigation.navigate('Profil') }}
+                        style={styles.colBox}>
+                        <FontAwesomeIcon icon={faWrench} size={width * 0.1} color={'white'} />
+                        <View>
+                            <Text style={styles.boxText}>VERSION {appVersion}</Text>
+                            <Text style={styles.boxSubText}>({formattedAppVersionDate})</Text>
+                        </View>
+                    </Col>
                 </Row>
             </Grid>
         </>
@@ -125,7 +116,16 @@ const styles = StyleSheet.create({
     boxText: {
         fontFamily: 'Agency FB Bold',
         color: 'white',
-        fontSize: width * 0.05
+        fontSize: width * 0.05,
+        marginHorizontal: width * 0.03,
+        textAlign: 'center'
+    },
+    boxSubText: {
+        fontFamily: 'Agency FB',
+        color: 'white',
+        fontSize: width * 0.03,
+        marginHorizontal: width * 0.03,
+        textAlign: 'center'
     },
     profilText: {
         fontFamily: 'Agency FB',
